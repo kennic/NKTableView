@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name             = 'NKTableView'
-	s.version          = '1.0.0'
+	s.version          = '1.0.1'
 	s.summary          = 'Block-based UITableView to replace delegation'
 	s.description      = <<-DESC
 	A block-based UITableView to replace UITableView's delegate and dataSource for better code and easier to use
