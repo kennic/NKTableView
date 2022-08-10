@@ -15,6 +15,7 @@ final class NKTableViewTests: XCTestCase {
 		let tableView = NKTableView<TestCell>(frame: .zero, style: .plain)
 		
 		tableView.tableDataSource
+			.numberOfSections { 1 }
 			.numberOfRowsInSection { section in 1 }
 			.cellForRowAt { tableView, indexPath in tableView.dequeueReusableCell(withIdentifier: "cell") as? TestCell ?? TestCell(style: .default, reuseIdentifier: "cell") }
 		
