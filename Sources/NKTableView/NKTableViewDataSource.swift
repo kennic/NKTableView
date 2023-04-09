@@ -28,8 +28,8 @@ public class NKTableViewDataSource<T: UITableViewCell>: NSObject, UITableViewDat
 	public func numberOfSections(in tableView: UITableView) -> Int { numberOfSections?() ?? 1 }
 	public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? { titleForHeaderInSection?(section) }
 	public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? { titleForFooterInSection?(section) }
-	public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { canEditRowAt?(indexPath) ?? true }
-	public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { canMoveRowAt?(indexPath) ?? false }
+	public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { canEditRowAt != nil ? canEditRowAt!(indexPath) : true }
+	public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { canMoveRowAt != nil ? canMoveRowAt!(indexPath) : false }
 	public func sectionIndexTitles(for tableView: UITableView) -> [String]? { sectionIndexTitles?() }
 	public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int { sectionForSectionIndexTitle?(title, index) ?? 0 }
 	public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { commitEditingStyleForRow?(editingStyle, indexPath) }

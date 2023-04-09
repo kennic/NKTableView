@@ -62,7 +62,7 @@ public class NKTableViewDelegate<T: UITableViewCell>: NSObject, UITableViewDeleg
 	public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? { viewForHeaderInSection?(section) }
 	public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? { viewForFooterInSection?(section) }
 	public func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) { accessoryButtonTapped?(indexPath) }
-	public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool { shouldHighlightRowAt?(indexPath) ?? false }
+	public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool { shouldHighlightRowAt != nil ? shouldHighlightRowAt!(indexPath) : false }
 	public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) { didHighlightRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) { didUnhighlightRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? { willSelectRowAt?(indexPath) }
@@ -73,13 +73,13 @@ public class NKTableViewDelegate<T: UITableViewCell>: NSObject, UITableViewDeleg
 	public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? { titleForDeleteConfirmationButtonForRowAt?(indexPath) }
 //	public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { leadingSwipeActionsConfigurationForRowAt?(indexPath) }
 //	public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { trailingSwipeActionsConfigurationForRowAt?(indexPath) }
-	public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool { shouldIndentWhileEditingRowAt?(indexPath) ?? false }
+	public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool { shouldIndentWhileEditingRowAt != nil ? shouldIndentWhileEditingRowAt!(indexPath) : false }
 	public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) { willBeginEditingRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) { didEndEditingRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath { targetIndexPathForMoveFromTo?(sourceIndexPath, proposedDestinationIndexPath) ?? proposedDestinationIndexPath }
 	public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int { indentationLevelForRowAt?(indexPath) ?? 0 }
-	public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool { canFocusRowAt?(indexPath) ?? false }
-	public func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool { shouldUpdateFocusIn?(context) ?? false }
+	public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool { canFocusRowAt != nil ? canFocusRowAt!(indexPath) : false }
+	public func tableView(_ tableView: UITableView, shouldUpdateFocusIn context: UITableViewFocusUpdateContext) -> Bool { shouldUpdateFocusIn != nil ? shouldUpdateFocusIn!(context) : false }
 	public func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) { didUpdateFocusIn?(context, coordinator) }
 	public func indexPathForPreferredFocusedView(in tableView: UITableView) -> IndexPath? { indexPathForPreferredFocusedView?(tableView) }
 	
