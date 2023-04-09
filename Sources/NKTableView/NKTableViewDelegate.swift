@@ -37,7 +37,7 @@ public class NKTableViewDelegate<T: UITableViewCell>: NSObject, UITableViewDeleg
 //	public var trailingSwipeActionsConfigurationForRowAt: ((IndexPath) -> UISwipeActionsConfiguration)?
 	public var shouldIndentWhileEditingRowAt: ((IndexPath) -> Bool)?
 	public var willBeginEditingRowAt: ((IndexPath) -> Void)?
-	public var didBeginEditingRowAt: ((IndexPath?) -> Void)?
+	public var didEndEditingRowAt: ((IndexPath?) -> Void)?
 	public var targetIndexPathForMoveFromTo: ((IndexPath, IndexPath) -> IndexPath)?
 	public var indentationLevelForRowAt: ((IndexPath) -> Int)?
 	public var canFocusRowAt: ((IndexPath) -> Bool)?
@@ -75,7 +75,7 @@ public class NKTableViewDelegate<T: UITableViewCell>: NSObject, UITableViewDeleg
 //	public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? { trailingSwipeActionsConfigurationForRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool { shouldIndentWhileEditingRowAt?(indexPath) ?? false }
 	public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) { willBeginEditingRowAt?(indexPath) }
-	public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) { didBeginEditingRowAt?(indexPath) }
+	public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) { didEndEditingRowAt?(indexPath) }
 	public func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath { targetIndexPathForMoveFromTo?(sourceIndexPath, proposedDestinationIndexPath) ?? proposedDestinationIndexPath }
 	public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int { indentationLevelForRowAt?(indexPath) ?? 0 }
 	public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool { canFocusRowAt?(indexPath) ?? false }
@@ -238,12 +238,6 @@ public class NKTableViewDelegate<T: UITableViewCell>: NSObject, UITableViewDeleg
 	@discardableResult
 	public func willBeginEditingRowAt(_ block: @escaping (IndexPath) -> Void) -> Self {
 		willBeginEditingRowAt = block
-		return self
-	}
-	
-	@discardableResult
-	public func didBeginEditingRowAt(_ block: @escaping (IndexPath?) -> Void) -> Self {
-		didBeginEditingRowAt = block
 		return self
 	}
 	

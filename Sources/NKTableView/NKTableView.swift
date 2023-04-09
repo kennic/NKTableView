@@ -7,8 +7,8 @@ open class NKTableView<T: UITableViewCell>: UITableView {
 	override public init(frame: CGRect, style: UITableView.Style) {
 		super.init(frame: frame, style: style)
 		
-		self.dataSource = tableDataSource
-		self.delegate = tableDelegate
+		dataSource = tableDataSource
+		delegate = tableDelegate
     }
 	
 	required public init?(coder: NSCoder) {

@@ -18,7 +18,7 @@ public class NKTableViewDataSource<T: UITableViewCell>: NSObject, UITableViewDat
 	public var canMoveRowAt: ((IndexPath) -> Bool)?
 	public var sectionIndexTitles: (() -> [String]?)?
 	public var sectionForSectionIndexTitle: ((String, Int) -> Int)?
-	public var editingStyleForRow: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
+	public var commitEditingStyleForRow: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
 	public var moveRowAtTo: ((IndexPath, IndexPath) -> Void)?
 	
 	// MARK: - UITableViewDataSource
@@ -32,7 +32,7 @@ public class NKTableViewDataSource<T: UITableViewCell>: NSObject, UITableViewDat
 	public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool { canMoveRowAt?(indexPath) ?? false }
 	public func sectionIndexTitles(for tableView: UITableView) -> [String]? { sectionIndexTitles?() }
 	public func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int { sectionForSectionIndexTitle?(title, index) ?? 0 }
-	public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { editingStyleForRow?(editingStyle, indexPath) }
+	public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { commitEditingStyleForRow?(editingStyle, indexPath) }
 	public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) { moveRowAtTo?(sourceIndexPath, destinationIndexPath) }
 	
 	// MARK: - Nested functions
@@ -92,8 +92,8 @@ public class NKTableViewDataSource<T: UITableViewCell>: NSObject, UITableViewDat
 	}
 	
 	@discardableResult
-	public func editingStyleForRow(_ block: @escaping (UITableViewCell.EditingStyle, IndexPath) -> Void) -> Self {
-		editingStyleForRow = block
+	public func commitEditingStyleForRow(_ block: @escaping (UITableViewCell.EditingStyle, IndexPath) -> Void) -> Self {
+		commitEditingStyleForRow = block
 		return self
 	}
 	
